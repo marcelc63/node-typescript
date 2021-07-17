@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 import { db } from "~/server/database";
-const sequelize = db.sequelize as Sequelize;
+const sequelize: Sequelize = db.sequelize;
 
 export class User extends Model {}
 
