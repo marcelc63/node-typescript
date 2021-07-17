@@ -1,9 +1,10 @@
-**VS Code Settings**
+**Folder Structure**
 
-```
-{
-  "editor.defaultFormatter": "denoland.vscode-deno",
-  "editor.formatOnSave": true,
-  "typescript.validate.enable": false
-}
-```
+- clients
+- controllers
+- coordiantors
+- dal
+- helpers
+- lib
+- models
+- server
