@@ -15,10 +15,9 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "controllers/*": ["controllers/*"],
       "~/*": ["./*"],
       "@/*": ["./*"]
     }
   },
-  "include": ["./*", "controllers/v1"]
+  "include": ["."]
 }
