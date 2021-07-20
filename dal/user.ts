@@ -1,6 +1,6 @@
 import { User, IUser } from "~/models/user";
 
-export class PriceDAL {
+export class UserDAL {
   async create(values: IUser) {
     try {
       const payload = {
