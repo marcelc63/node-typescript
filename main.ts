@@ -2,9 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import Koa from "koa";
-import bodyParser from "koa-bodyparser";
-
-import { router } from "~/controllers/v1";
+import { initRouter } from "~/controllers";
 import { initDB } from "~/server/database";
 import { initModel } from "~/server/models";
 import { initCron } from "~/server/cron";
@@ -17,8 +15,7 @@ const main = async () => {
   await initCron();
 
   const app = new Koa();
-  app.use(bodyParser());
-  app.use(router.routes());
+  await initRouter(app);
 
   app.listen(port);
   console.log(`Connected to port:${port}`);
