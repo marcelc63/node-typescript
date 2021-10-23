@@ -1,12 +1,9 @@
-import { User, IUser } from "~/models/user";
+import { Example, IExample } from "~/models/example";
 
-export class UserDAL {
-  async create(values: IUser): Promise<[any | undefined, any | undefined]> {
+export class ExampleDAL {
+  async create(values: IExample): Promise<[any | undefined, any | undefined]> {
     try {
-      const payload = {
-        name: values.name,
-      };
-      const res = await User.create(payload);
+      const res = await Example.create(values);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -17,7 +14,7 @@ export class UserDAL {
     options: object = {}
   ): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await User.findOne(options);
+      const res = await Example.findAll(options);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -26,7 +23,7 @@ export class UserDAL {
 
   async get(id: number): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await User.findOne({
+      const res = await Example.findOne({
         where: { id },
       });
       return [res, undefined];
@@ -39,7 +36,7 @@ export class UserDAL {
     options: object = {}
   ): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await User.findOne(options);
+      const res = await Example.findOne(options);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -48,17 +45,15 @@ export class UserDAL {
 
   async update(
     id: number,
-    values: IUser
+    values: IExample
   ): Promise<[any | undefined, any | undefined]> {
     try {
-      const payload = {
-        name: values.name,
-      };
-      const res = await User.update(payload, {
+      await Example.update(values, {
         where: {
           id,
         },
       });
+      const [res, _] = await this.get(id);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -67,7 +62,8 @@ export class UserDAL {
 
   async delete(id: number): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await User.destroy({
+      const [res, _] = await this.get(id);
+      await Example.destroy({
         where: { id },
       });
       return [res, undefined];
