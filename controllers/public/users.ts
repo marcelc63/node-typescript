@@ -6,25 +6,28 @@ import { UserDAL } from "~/dal/user";
 import { IUser } from "~/models/user";
 const userDAL = new UserDAL();
 
-import { TestClient } from "~/clients/test/api";
-const testClient = new TestClient();
-
 const Create = isObject<{
   name: string;
+  email: string;
+  phone: string;
+  password: string;
 }>({
   name: isString(),
+  email: isString(),
+  phone: isString(),
+  password: isString(),
 });
 const create = async (ctx: any) => {
-  const { name } = body(ctx, Create);
+  const { name, email, phone, password } = body(ctx, Create);
 
   const params: IUser = {
     name,
+    email,
+    phone,
+    password,
+    group: "member",
   };
   let [user, _] = await userDAL.create(params);
-
-  let [resTest, _resErrTest] = await testClient.test({
-    keyword: "essential oil",
-  });
 
   if (user) {
     ctx.response.status = Statuses.OK;
@@ -34,6 +37,6 @@ const create = async (ctx: any) => {
 };
 
 // Inject Router
-export const initTestController = async (router: KoaRouter) => {
-  router.post("/v1/tracker", validate(), create);
+export const initUserController = async (router: KoaRouter) => {
+  router.post("/api/public/users", validate(), create);
 };

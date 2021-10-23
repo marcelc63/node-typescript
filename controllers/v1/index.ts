@@ -1,10 +1,8 @@
 import KoaRouter from "koa-router";
-import { initTestController } from "~/controllers/v1/test";
+import { initAuthController } from "~/controllers/v1/authentication";
+import { initImagesController } from "~/controllers/v1/images";
 
 export const router = new KoaRouter();
 
-router.get("/", async (context) => {
-  context.response.body = "Running!";
-});
-
-initTestController(router);
+initAuthController(router);
+initImagesController(router);
