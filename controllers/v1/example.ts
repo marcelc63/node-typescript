@@ -107,9 +107,9 @@ const remove = async (ctx: any) => {
 // Inject Router
 export const initExampleController = async (router: KoaRouter) => {
   router
-    .post("/v1/example", validate(), create)
-    .get("/v1/example", validate(), getAll)
-    .get("/v1/example/:example_id", validate(), get)
-    .patch("/v1/example/:example_id", validate(), update)
-    .delete("/v1/example/:example_id", validate(), remove);
+    .post("/api/v1/example", validate(), create)
+    .get("/api/v1/example", validate(), getAll)
+    .get("/api/v1/example/:example_id", validate(), get)
+    .patch("/api/v1/example/:example_id", validate(), update)
+    .delete("/api/v1/example/:example_id", validate(), remove);
 };

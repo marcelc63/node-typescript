@@ -87,5 +87,5 @@ const callback = async (ctx: any) => {
 
 //Inject Routes
 export function initImagesController(router: KoaRouter) {
-  router.post("/v1/images", callback);
+  router.post("/api/v1/images", callback);
 }

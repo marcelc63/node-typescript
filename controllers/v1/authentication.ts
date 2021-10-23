@@ -30,5 +30,5 @@ const check = async (ctx: any) => {
 
 //Inject Routes
 export function initAuthController(router: KoaRouter) {
-  router.post("/api/v1/logout", logout).get("/v1/auth/check", check);
+  router.post("/api/v1/logout", logout).get("/api/v1/check", check);
 }
