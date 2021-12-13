@@ -1,12 +1,12 @@
-import { User, IUser } from "~/models/user";
+import { User as Model, IUser as IModel } from "~/models/user";
 
 export class UserDAL {
-  async create(values: IUser): Promise<[any | undefined, any | undefined]> {
+  async create(values: IModel): Promise<[any | undefined, any | undefined]> {
     try {
       const payload = {
         name: values.name,
       };
-      const res = await User.create(payload);
+      const res = await Model.create(payload);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -17,7 +17,7 @@ export class UserDAL {
     options: object = {}
   ): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await User.findOne(options);
+      const res = await Model.findOne(options);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -26,7 +26,7 @@ export class UserDAL {
 
   async get(id: number): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await User.findOne({
+      const res = await Model.findOne({
         where: { id },
       });
       return [res, undefined];
@@ -39,7 +39,7 @@ export class UserDAL {
     options: object = {}
   ): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await User.findOne(options);
+      const res = await Model.findOne(options);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -48,13 +48,13 @@ export class UserDAL {
 
   async update(
     id: number,
-    values: IUser
+    values: IModel
   ): Promise<[any | undefined, any | undefined]> {
     try {
       const payload = {
         name: values.name,
       };
-      const res = await User.update(payload, {
+      const res = await Model.update(payload, {
         where: {
           id,
         },

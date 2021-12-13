@@ -1,9 +1,9 @@
-import { Example, IExample } from "~/models/example";
+import { Example as Model, IExample as IModel } from "~/models/example";
 
 export class ExampleDAL {
-  async create(values: IExample): Promise<[any | undefined, any | undefined]> {
+  async create(values: IModel): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await Example.create(values);
+      const res = await Model.create(values);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -14,7 +14,7 @@ export class ExampleDAL {
     options: object = {}
   ): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await Example.findAll(options);
+      const res = await Model.findAll(options);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -23,7 +23,7 @@ export class ExampleDAL {
 
   async get(id: number): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await Example.findOne({
+      const res = await Model.findOne({
         where: { id },
       });
       return [res, undefined];
@@ -36,7 +36,7 @@ export class ExampleDAL {
     options: object = {}
   ): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await Example.findOne(options);
+      const res = await Model.findOne(options);
       return [res, undefined];
     } catch (err) {
       return [undefined, err];
@@ -45,10 +45,10 @@ export class ExampleDAL {
 
   async update(
     id: number,
-    values: IExample
+    values: IModel
   ): Promise<[any | undefined, any | undefined]> {
     try {
-      await Example.update(values, {
+      await Model.update(values, {
         where: {
           id,
         },
@@ -63,7 +63,7 @@ export class ExampleDAL {
   async delete(id: number): Promise<[any | undefined, any | undefined]> {
     try {
       const [res, _] = await this.get(id);
-      await Example.destroy({
+      await Model.destroy({
         where: { id },
       });
       return [res, undefined];
