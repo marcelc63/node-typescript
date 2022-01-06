@@ -67,7 +67,7 @@ export class UserDAL {
 
   async delete(id: number): Promise<[any | undefined, any | undefined]> {
     try {
-      const res = await User.destroy({
+      const res = await Model.destroy({
         where: { id },
       });
       return [res, undefined];
